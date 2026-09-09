@@ -1,0 +1,7 @@
+.nuxt
+.env
+.gitignore
+.output
+dist
+node_modules
+pnpm-lock.yaml
