@@ -6,7 +6,7 @@ import MainSidebar from './components/MainSidebar.vue'
   <NuxtLayout>
     <div class="flex justify-between">
       <MainSidebar />
-      <div class="w-full mt-4">
+      <div class="w-full">
         <NuxtPage />
       </div>
     </div>
