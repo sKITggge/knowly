@@ -3,10 +3,11 @@ import GuideCard from '~/components/overview/GuideCard.vue'
 import KeyValue from '~/components/overview/KeyValue.vue'
 import ScenarioCard from '~/components/overview/ScenarioCard.vue'
 import StatusPill from '~/components/overview/StatusPill.vue'
+import type { Status } from '~~/shared/types'
 
 type LinkItem = { label: string; to: string; variant: 'primary' | 'secondary' }
 type StepItem = { title: string; text: string }
-type StatusItem = { label: string; hint: string }
+type StatusItem = { label: string; hint: string; status: Status }
 type PrincipleItem = { title: string; text: string; bullets: string[] }
 type PageCardItem = { title: string; desc: string; to: string; badge: string }
 type FieldItem = { k: string; v: string }
@@ -34,10 +35,10 @@ const quickSteps: StepItem[] = [
 ]
 
 const statuses: StatusItem[] = [
-  { label: 'To do', hint: 'Ещё не начинали' },
-  { label: 'В процессе', hint: 'Учите прямо сейчас' },
-  { label: 'На повторение', hint: 'Нужно повторить позже' },
-  { label: 'Выучено', hint: 'Материал закреплён' },
+  { label: 'В процессе', hint: 'Учите прямо сейчас', status: 'inProgress' },
+  { label: 'To do', hint: 'Ещё не начинали', status: 'todo' },
+  { label: 'На повторение', hint: 'Нужно повторить позже', status: 'review' },
+  { label: 'Выучено', hint: 'Материал закреплён', status: 'learned' },
 ]
 
 const principles: PrincipleItem[] = [
@@ -212,7 +213,13 @@ const linkClass = (variant: LinkItem['variant']) =>
           </ul>
 
           <div v-if="p.title === 'Единые статусы обучения'" class="mt-4 grid grid-cols-2 gap-2">
-            <StatusPill v-for="s in statuses" :key="s.label" :label="s.label" :hint="s.hint" />
+            <StatusPill
+              v-for="s in statuses"
+              :key="s.label"
+              :label="s.label"
+              :hint="s.hint"
+              :status="s.status"
+            />
           </div>
         </div>
       </div>

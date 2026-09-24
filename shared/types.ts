@@ -13,3 +13,5 @@ export type SignUpPayload = {
   email: string
   password: string
 }
+
+export type Status = 'todo' | 'inProgress' | 'review' | 'learned'
