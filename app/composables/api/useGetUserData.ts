@@ -7,9 +7,11 @@ export const useGetUserData = () => {
 
   const getUserData = () => {
     const url = new URL('/users/me', apiBase)
+    const headers = import.meta.server ? useRequestHeaders(['cookie']) : undefined
 
     return $fetch<User>(url.toString(), {
       credentials: 'include',
+      headers,
     })
   }
 

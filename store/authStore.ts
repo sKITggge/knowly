@@ -35,7 +35,7 @@ export const useAuthStore = defineStore('auth', () => {
   const initialize = async () => {
     try {
       user.value = await getUserData()
-    } catch (еrror) {
+    } catch (error) {
       user.value = null
     } finally {
       initialized.value = true
