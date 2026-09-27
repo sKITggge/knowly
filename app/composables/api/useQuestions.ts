@@ -26,11 +26,14 @@ export const useQuestions = () => {
   }
 
   const getQuestions = () => {
+    const headers = import.meta.server ? useRequestHeaders(['cookie']) : undefined
+
     const url = new URL('/questions', apiBase)
 
     return $fetch<Question[]>(url.toString(), {
       method: 'GET',
       credentials: 'include',
+      headers,
 
       onResponseError({ response }) {
         const message = mapStatusToMessage(response.status)
